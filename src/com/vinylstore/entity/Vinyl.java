@@ -2,12 +2,14 @@ package com.vinylstore.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "vinyl")
 public class Vinyl {
 
+	@Id
 	@Column(name = "id")
 	private int id;
 
