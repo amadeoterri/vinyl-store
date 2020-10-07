@@ -24,4 +24,27 @@ public class VinylServiceImpl implements IVinylService {
 
 	}
 
+	@Override
+	@Transactional
+	public void saveVinyl(Vinyl theVinyl) {
+
+		_vinylDAO.saveVinyl(theVinyl);
+
+	}
+
+	@Override
+	@Transactional
+	public Vinyl getVinyl(int theId) {
+
+		return _vinylDAO.getVinyl(theId);
+	}
+
+	@Override
+	@Transactional
+	public void deleteVinyl(int theId) {
+
+		_vinylDAO.deleteVinyl(theId);
+
+	}
+
 }

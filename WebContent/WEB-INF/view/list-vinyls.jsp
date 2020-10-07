@@ -6,50 +6,71 @@
 <head>
 	<title> List Vinyls</title>
 	
-	<!-- bootstrap style sheet -->
+	<%@include file="head.html" %>
 	
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-	
-	<!-- reference my css -->
-	
-	<link type="text/css"
-	rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/style.css" />
+	<script type="text/javascript">
+		function confirm_delete(){
+			return confirm('Are you sure you want to delete this?')
+			
+				
+		}
+	</script>
 
 </head>
-<body>
+<body class="test">
 
 	<div>
          <jsp:include page="header.jsp"></jsp:include>
-     </div>
+    </div>
 	
-	<div id="container">
-	
-		<div id="list">
-		
-			<table class="table table-bordered">
-				<thead>
-					<tr>
-						<th>Title</th>
-						<th>Artist</th>
-						<th>Price</th>
-					</tr>
-				</thead>
-				<tbody>
+	<div id="container" class="m-3" >
+				
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>Artist</th>
+					<th>Price</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+			
 				<c:forEach var="tempVinyl" items="${vinyls}">
 				
+					<c:url var="updateLink" value="/vinyls/showFormForUpdate">
+						<c:param name="vinylId" value="${tempVinyl.id}" />
+					</c:url>
+					
+					<c:url var="deleteLink" value="/vinyls/delete">
+						<c:param name="vinylId" value="${tempVinyl.id}" />
+					</c:url>
+						
 					<tr>
 						<td> ${tempVinyl.title}</td>
 						<td> ${tempVinyl.artist}</td>
 						<td> ${tempVinyl.price}</td>
+						<td>
+						
+							<!--  display the update link -->
+							<a href="${updateLink}" class="btn btn-primary">Edit</a>
+							<a href="${deleteLink}" class="btn btn-danger"
+							onclick="if (!(confirm('Are you sure? '))) return false">
+							Delete </a>
+						</td>
 					</tr>
 			
 				</c:forEach>
-				</tbody>
 			
-			</table>
+			</tbody>
 		
-		</div>
+		</table>
+		
+		<!-- Button add vinyl -->
+		
+		<input type="button" class=" btn btn-dark mb-2" value="Add vinyl"
+				onclick="window.location.href='showFormForAdd';return false;"/>
 	
 	</div>
 
