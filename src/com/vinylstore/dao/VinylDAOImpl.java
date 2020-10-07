@@ -7,7 +7,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.vinylstore.entity.Vinyl;
 
@@ -19,7 +18,6 @@ public class VinylDAOImpl implements IVinylDAO {
 	private SessionFactory sessionFactory;
 
 	@Override
-	@Transactional
 	public List<Vinyl> getVinyls() {
 
 		// get current hibernate session
